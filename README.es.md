@@ -1,16 +1,16 @@
-# Four Love Restaurant - Management System
+# Four Love Restaurant - Sistema de Gestión
 
-A full-stack restaurant management system built as an academic project (Group 5, 2026) for Universidad de Costa Rica (UCR).
+Sistema de gestión de restaurante construido como proyecto académico (Grupo 5, 2026) para la Universidad de Costa Rica (UCR).
 
-## Overview
+## Descripción General
 
-Four Love Restaurant is a comprehensive management platform that handles employees, users, roles and permissions, menu items, ingredients, suppliers, tables, orders, payments, and announcements for a restaurant business.
+Four Love Restaurant es una plataforma de gestión integral que maneja empleados, usuarios, roles y permisos, elementos del menú, ingredientes, proveedores, mesas, órdenes, pagos y anuncios para un negocio de restaurante.
 
-## Tech Stack
+## Stack Tecnológico
 
 ### Backend
 
-| Technology | Version |
+| Tecnología | Versión |
 |---|---|
 | C# / .NET | 10.0 |
 | ASP.NET Core Web API | 10.0 |
@@ -21,7 +21,7 @@ Four Love Restaurant is a comprehensive management platform that handles employe
 
 ### Frontend
 
-| Technology | Version |
+| Tecnología | Versión |
 |---|---|
 | React | 18.3.1 |
 | TypeScript | - |
@@ -32,7 +32,7 @@ Four Love Restaurant is a comprehensive management platform that handles employe
 | React Router DOM | 6.26.2 |
 | Radix UI | - |
 
-## Architecture
+## Arquitectura
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -77,142 +77,142 @@ Four Love Restaurant is a comprehensive management platform that handles employe
 └─────────────────────────────────────────────────────────┘
 ```
 
-## Database Schema
+## Esquema de Base de Datos
 
 ```
-SUPPLIERS ──< INGREDIENTS ──M:N── MENUITEMS ──M:N── ORDERS ──< PAYMENTS
+PROVEEDORES ──< INGREDIENTES ──M:N── PLATILLOS ──M:N── ORDENES ──< PAGOS
                                                   │
-                                               TABLES
+                                               MESAS
 
-EMPLOYES ──1:1── USERS ──N:1── ROLS ──M:N── PERMISSIONS
+EMPLEADOS ──1:1── USUARIOS ──N:1── ROLES ──M:N── PERMISOS
 ```
 
-### Tables (14 total)
+### Tablas (14 en total)
 
-| Table | Description |
+| Tabla | Descripción |
 |---|---|
-| Employes | Employee records (identification, name, shift, salary) |
-| Users | System users linked to employees and roles |
-| Rols | User roles (Administrador, Cocinero, Mesero) |
-| Permissions | System permissions for API access control |
-| Rol_Permission | Many-to-many: Roles ↔ Permissions |
-| MENUITEMS | Restaurant menu items |
-| INGREDIENTS | Ingredients linked to suppliers |
-| SUPPLIERS | Ingredient suppliers |
-| TABLES | Restaurant tables |
-| ORDERS | Customer orders linked to tables |
-| PAYMENTS | Payment records linked to orders |
-| COMPONE | Many-to-many: Ingredients ↔ MenuItems |
-| CONTEIN | Many-to-many: MenuItems ↔ Orders |
-| Announcements | System announcements |
+| Employes | Registros de empleados (identificación, nombre, turno, salario) |
+| Users | Usuarios del sistema vinculados a empleados y roles |
+| Rols | Roles de usuario (Administrador, Cocinero, Mesero) |
+| Permissions | Permisos del sistema para control de acceso API |
+| Rol_Permission | Muchos a muchos: Roles ↔ Permisos |
+| MENUITEMS | Elementos del menú del restaurante |
+| INGREDIENTS | Ingredientes vinculados a proveedores |
+| SUPPLIERS | Proveedores de ingredientes |
+| TABLES | Mesas del restaurante |
+| ORDERS | Órdenes de clientes vinculadas a mesas |
+| PAYMENTS | Registros de pagos vinculados a órdenes |
+| COMPONE | Muchos a muchos: Ingredientes ↔ MenuItems |
+| CONTEIN | Muchos a muchos: MenuItems ↔ Orders |
+| Announcements | Anuncios del sistema |
 
-## Roles & Permissions
+## Roles y Permisos
 
-| Role | Access Level | Routes |
+| Rol | Nivel de Acceso | Rutas |
 |---|---|---|
-| **Administrador** | Full access (32 permissions) | All routes |
-| **Cocinero** | Kitchen staff (8 permissions) | Home, Menu Items, Ingredients |
-| **Mesero** | Waiter (10 permissions) | Home, Tables, Orders, Menu Items, Payments |
+| **Administrador** | Acceso total (32 permisos) | Todas las rutas |
+| **Cocinero** | Personal de cocina (8 permisos) | Inicio, Platillos, Ingredientes |
+| **Mesero** | Mesero (10 permisos) | Inicio, Mesas, Órdenes, Platillos, Pagos |
 
-### Test Users
+### Usuarios de Prueba
 
-| User | Password | Role |
+| Usuario | Contraseña | Rol |
 |---|---|---|
 | `admin` | `123456` | Administrador |
 | `cocinero` | `123456` | Cocinero |
 | `mesero` | `123456` | Mesero |
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 ForLoveRestaurant/
 ├── grupo_5_proyecto_2026_backend/
 │   ├── FourLoveRestaurant/
-│   │   ├── Controllers/        # 12 API controllers
-│   │   ├── Models/             # 13 entity models + DTOs
-│   │   ├── Repository/         # EF Core DbContext
-│   │   ├── Custom/             # Auth helpers & utilities
-│   │   ├── Migrations/         # Database migrations
-│   │   ├── Program.cs          # App configuration
-│   │   └── appsettings.json    # DB connection & JWT config
+│   │   ├── Controllers/        # 12 controladores API
+│   │   ├── Models/             # 13 modelos de entidad + DTOs
+│   │   ├── Repository/         # DbContext de EF Core
+│   │   ├── Custom/             # Helpers de auth y utilidades
+│   │   ├── Migrations/         # Migraciones de base de datos
+│   │   ├── Program.cs          # Configuración de la app
+│   │   └── appsettings.json    # Config DB y JWT
 │   ├── DataBase/
-│   │   └── CreateTables.sql    # Raw SQL schema
-│   └── PruebasUnitariasBack/   # Unit tests (xUnit)
+│   │   └── CreateTables.sql    # Schema SQL raw
+│   └── PruebasUnitariasBack/   # Pruebas unitarias (xUnit)
 │
 ├── grupo_5_proyecto_2026_fronted/
 │   ├── src/
-│   │   ├── pages/              # Page components
-│   │   ├── components/         # Reusable UI components
-│   │   ├── services/           # API service layer
-│   │   ├── types/              # TypeScript definitions
-│   │   ├── hooks/              # Custom React hooks
-│   │   ├── utils/              # Utilities (JWT, etc.)
-│   │   └── lib/                # Helper functions
-│   ├── tests/e2e/              # Playwright E2E tests
+│   │   ├── pages/              # Componentes de página
+│   │   ├── components/         # Componentes UI reutilizables
+│   │   ├── services/           # Capa de servicios API
+│   │   ├── types/              # Definiciones TypeScript
+│   │   ├── hooks/              # Hooks React personalizados
+│   │   ├── utils/              # Utilidades (JWT, etc.)
+│   │   └── lib/                # Funciones auxiliares
+│   ├── tests/e2e/              # Pruebas E2E con Playwright
 │   └── package.json
 │
-└── documentacion/              # Project documentation
+└── documentacion/              # Documentación del proyecto
 ```
 
-## Getting Started
+## Inicio Rápido
 
-### Prerequisites
+### Prerrequisitos
 
 - .NET SDK 10.0
-- Node.js 18+ (or Bun)
+- Node.js 18+ (o Bun)
 - SQL Server LocalDB
 
-### Backend Setup
+### Configuración del Backend
 
 ```bash
 cd grupo_5_proyecto_2026_backend/FourLoveRestaurant
 
-# Restore dependencies
+# Restaurar dependencias
 dotnet restore
 
-# Apply database migrations
+# Aplicar migraciones de base de datos
 dotnet ef database update
 
-# Run the API
+# Ejecutar la API
 dotnet run
 ```
 
-The API will start at `https://localhost:5001` (or as configured in `launchSettings.json`).
+La API iniciará en `https://localhost:5001` (o según la configuración en `launchSettings.json`).
 
-### Frontend Setup
+### Configuración del Frontend
 
 ```bash
 cd grupo_5_proyecto_2026_fronted
 
-# Install dependencies (using npm or bun)
+# Instalar dependencias (usando npm o bun)
 npm install
-# or
+# o
 bun install
 
-# Run development server
+# Ejecutar servidor de desarrollo
 npm run dev
-# or
+# o
 bun dev
 ```
 
-The frontend will start at `http://localhost:5173`.
+El frontend iniciará en `http://localhost:5173`.
 
-## API Endpoints
+## Endpoints de la API
 
-| Controller | Endpoints |
+| Controlador | Endpoints |
 |---|---|
 | Access | Login, Register |
-| Employee | CRUD operations |
-| User | CRUD operations |
-| MenuItem | CRUD operations |
-| Ingredient | CRUD operations |
-| Supplier | CRUD operations |
-| Table | CRUD operations |
-| Order | CRUD operations |
-| Payment | CRUD operations |
-| RolPermission | Get/Update roles & permissions |
-| Announcements | CRUD operations |
+| Employee | Operaciones CRUD |
+| User | Operaciones CRUD |
+| MenuItem | Operaciones CRUD |
+| Ingredient | Operaciones CRUD |
+| Supplier | Operaciones CRUD |
+| Table | Operaciones CRUD |
+| Order | Operaciones CRUD |
+| Payment | Operaciones CRUD |
+| RolPermission | Obtener/Actualizar roles y permisos |
+| Announcements | Operaciones CRUD |
 
-## License
+## Licencia
 
-Academic project - Universidad de Costa Rica (UCR), 2026.
+Proyecto académico - Universidad de Costa Rica (UCR), 2026.
