@@ -213,6 +213,4 @@ El frontend iniciará en `http://localhost:5173`.
 | RolPermission | Obtener/Actualizar roles y permisos |
 | Announcements | Operaciones CRUD |
 
-## Licencia
 
-Proyecto académico - Universidad de Costa Rica (UCR), 2026.
